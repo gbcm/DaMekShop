@@ -1,0 +1,51 @@
+<script type="importmap">
+    {
+      "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+      }
+    }
+  </script>
+
+<script type="module">
+    import { createApp } from 'vue'
+    
+    let availableUnitId = 0;
+    let armyUnitId = 0;
+    
+    createApp({
+      data() {
+        return {
+          availableUnits: [
+            { id: availableUnitId++, text: 'Boyz' },
+            { id: availableUnitId++, text: 'Burnaz'},
+          ],
+          unitsInArmy: []
+        }
+      },
+      computed: {
+
+      },
+      methods: {
+        addToArmy(unit) {
+          this.unitsInArmy.push({ id: armyUnitId++, text: unit.text })
+        },
+        removeFromArmy(unit) {
+          this.unitsInArmy = this.unitsInArmy.filter((t) => t !== unit)
+        }
+      }
+    }).mount('#app')
+    </script>
+    
+    <div id="app">
+      <ul>
+        <li v-for="unit in availableUnits" :key="unit.id">
+            {{unit.text}}<button @click="addToArmy(unit)">Add</button>
+        </li>
+      </ul>
+      <p>Army</p>
+      <ul>
+        <li v-for="unit in unitsInArmy" :key="unit.id">
+            {{unit.text}}<button @click="removeFromArmy(unit)">Remove</button>
+        </li>
+      </ul>
+    </div>
