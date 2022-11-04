@@ -5,9 +5,11 @@
       }
     }
   </script>
+<script src="ArmyUnitDisplay.js"></script>
 
 <script type="module">
     import { createApp } from 'vue'
+    import ArmyUnitDisplay from './ArmyUnitDisplay.js'
     
     let availableUnitId = 0;
     let armyUnitId = 0;
@@ -34,18 +36,18 @@
         }
       }
     }).mount('#app')
-    </script>
+</script>
     
-    <div id="app">
-      <ul>
-        <li v-for="unit in availableUnits" :key="unit.id">
-            {{unit.text}}<button @click="addToArmy(unit)">Add</button>
-        </li>
-      </ul>
-      <p>Army</p>
-      <ul>
-        <li v-for="unit in unitsInArmy" :key="unit.id">
-            {{unit.text}}<button @click="removeFromArmy(unit)">Remove</button>
-        </li>
-      </ul>
-    </div>
+<div id="app">
+  <ul>
+    <li v-for="unit in availableUnits" :key="unit.id">
+        {{unit.text}}<button @click="addToArmy(unit)">Add</button>
+    </li>
+  </ul>
+  <p>Army</p>
+  <ul>
+    <li v-for="unit in unitsInArmy" :key="unit.id">
+        <army-unit-display></army-unit-display>
+    </li>
+  </ul>
+</div>
